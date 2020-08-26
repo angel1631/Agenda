@@ -1,0 +1,31 @@
+extends ../../../views/contents/base.pug
+
+append encabezado
+
+block contenido
+	div(class="row contenedor-titulo-formulario")
+		div(class="titulo-formulario col-sm-3 col-md-offset-8") #{titulo}
+	div(class="contenedor-listado")
+		each item in listado
+			div(class="contenedor-item col-md-12")
+				div(class="informacion col-md-4")
+					table(class="table table-striped")
+						tr(class="linea")
+							td(class="texto col-md-2") DPI:
+							td(class="info col-md-10") #{item.dpi}
+						tr(class="linea")
+							td(class="texto col-md-2") Nombre:
+							td(class="info col-md-10") #{item.nombre}
+						tr(class="linea")
+							td(class="texto col-md-2") Observacion:
+							td(class="info col-md-10") #{item.observacion}
+						tr(class="linea")
+							td(class="texto col-md-2") Ingreso
+							td(class="info col-md-10") #{item.created}	
+				div(class="dpi col-md-4")
+					img(src=item.idpi)
+				div(class="foto col-md-4")
+					img(src=item.foto)
+		
+append pie
+	link(rel="stylesheet" href="http://upa.gnesis.net/style/listaNegra.css")
