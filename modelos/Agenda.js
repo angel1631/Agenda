@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes){
 	var Agenda = sequelize.define('Agenda', {
 		id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, pintar: [2,3,4], name: 'Identificador', tipo: 'number'},
 		observacion: {type: DataTypes.TEXT, length: 1024, allowNull: false, pintar: [1,2,3,4], name: "Observaciones", tipo: "textarea", rows: "3"},
-		fecha: {type: DataTypes.DATE, allowNull: false, pintar: [1,2,3,4], name: "Fecha y hora de asistencia", tipo: "date"},
+		fecha: {type: DataTypes.DATE, allowNull: false, pintar: [1,2,3,4], name: "Fecha y hora de visita", tipo: "date"},
 		recordatorio: {type: DataTypes.INTEGER, allowNull: false, pintar: [1,2,3,4], name: "Recordatorio en minutos", tipo: "number"},
 		duracion: {type: DataTypes.INTEGER, allowNull: false, pintar: [1,2,3,4], name: "Duracion en minutos", tipo: 'number'},
 		asistio: {type: DataTypes.DATE, allowNull: true, pintar: [1,2,3,4], name: "Confirmacion de asistencia", tipo: 'date'},

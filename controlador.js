@@ -9,11 +9,12 @@ const core = require('../../core/funciones/index.js');
 
 
 router.get('/insertar_seguimiento_gestion', function(req,res){
-	campos = [{tipo: "number", name: "No. de gestion", id: "GestionId", valor: req.query.GestionId}];
-	campos.push({tipo: "textarea", name: "Observacion", id: "observacion", rows: "3"});
+	campos = [{externo: true, name: "No. de gestion", id: "GestionId", "tipo": "number"}];
+	campos.push({modelo:'Agenda', campo: 'observacion'});
+	campos.push({modelo:'Agenda', campo: 'fecha'});
+	campos.push({modelo:'Agenda', campo: 'recordatorio'});
+	campos.push({modelo:'Agenda', campo: 'duracion'});
 	campos.push({tipo: "datetime-local", name: "Fecha de visita", id: "fecha"});
-	campos.push({tipo: "number", name: "Recordatorio en minutos", id: "recordatorio"});
-	campos.push({tipo: "number", name: "Duracion de la visita en minutos", id: "duracion"});
 	core.formularios.generar_formulario_standard(campos,req.query).then((respuesta)=>{
         datos = {accion: "insertar_seguimiento_gestion", modelo: "Agenda", campos: respuesta, titulo: "Agendar"};
         datos.menu = req.menu.html;
@@ -156,8 +157,9 @@ router.get('/confirmar_asistencia/:gestion', function(req,res,next){
 	});
 });
 router.get('/confirmar_autorizacion', function(req,res,next){
-	campos = [{tipo: "number", name: "No. de gestion", id: "GestionId", valor: req.query.GestionId}];
-	campos.push({tipo: "textarea", name: "Observacion", id: "observacion", rows: "3"});
+	campos = [{externo: true, name: "No. de gestion", id: "GestionId", "tipo": "number"},
+		{"modelo":'Agenda', campo: 'observacion'}
+	];
 	core.formularios.generar_formulario_standard(campos,req.query).then((respuesta)=>{
         datos = {accion: "confirmar_autorizacion", modelo: "Agenda", campos: respuesta, titulo: "Agenda confirmar autorizacion"};
         datos.menu = req.menu.html;
@@ -182,11 +184,13 @@ router.post('/confirmar_autorizacion', function(req,res,next){
 	
 });
 router.get('/reagendar/', function(req,res,next){
-	campos = [{tipo: "number", name: "No. de gestion", id: "GestionId", valor: req.query.GestionId}];
-	campos.push({tipo: "textarea", name: "Observacion", id: "observacion", rows: "3"});
-	campos.push({tipo: "datetime-local", name: "Nueva fecha de visita", id: "fecha"});
-	campos.push({tipo: "number", name: "Recordatorio en minutos", id: "recordatorio"});
-	campos.push({tipo: "number", name: "Duracion de la visita en minutos", id: "duracion"});
+	campos = [
+		{externo: true, name: "No. de gestion", id: "GestionId", "tipo": "number"},
+		{modelo: 'Agenda', campo: 'observacion'},
+		{modelo: 'Agenda', campo: 'fecha'},
+		{modelo: 'Agenda', campo: 'recordatorio'},
+		{modelo: 'Agenda', campo: 'duracion'}
+	];
 	core.formularios.generar_formulario_standard(campos,req.query).then((respuesta)=>{
         datos = {accion: "reagendar", modelo: "Agenda", campos: respuesta, titulo: "Re agendar"};
         datos.menu = req.menu.html;
