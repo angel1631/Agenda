@@ -3,7 +3,7 @@ var ics = require('ics');
 var router = express.Router();
 var modelos = require('../../modelos');
 var FCM = require('../FCM');
-var uuid4 = require('uuid/v4')
+var uuid4 = require('uuid/v4');
 const core = require('../../core/funciones/index.js');
 
 
